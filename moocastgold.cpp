@@ -74,7 +74,8 @@ at first I misread it as "find the least possible SUM of the costs", which is a
 lot harder.
 
 I'm actually surprised this fits rather comfortably under the time limit, given
-that it is O(N^2 log N). Actually nvm that does make sense lol since the bound
+that it is O(N^2 log K), where K is X_Max (technically squared, but doesn't
+matter with logs) Actually nvm that does make sense lol since the bound
 on N is so low.
 
 My implementation definitely isn't the fastest, but it works so who cares.
