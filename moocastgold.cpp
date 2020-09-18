@@ -23,6 +23,11 @@ void setIO(string name = "") { // name is nonempty for USACO file I/O
     }
 }
 
+/*
+binary search the answer
+dfs to check it
+*/
+
 int main() {
     setIO("moocast");
     
