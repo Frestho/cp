@@ -36,7 +36,7 @@ void dfs(int s) {
     visited2[s] = true;
     v.pb(s);
     // process node s
-    for (auto u: adj[s]) if(u.s <= mid) dfs(u.f);
+    for (auto u: adj[s]) if(u.s >= mid) dfs(u.f);
 }
 
 int main() {
@@ -59,19 +59,31 @@ int main() {
 
     //do a binary search
     int lo = 1, hi = 1e9;
-    int tmp = 0; // least position that is not visited
     while(lo < hi-1) {
     	mid = (lo + hi)/2;
-    	while(tmp < N) {
+    	bool works = true;
+        int tmp = 1; // least position that is not visited
+    	memset(visited, false, sizeof(visited));
+    	while(tmp <= N) {
     		memset(visited2, false, sizeof(visited2));
     		dfs(tmp);
     		//check if the visited elements are in a permuation
     		for(int node : v) {
-    			if(!visited2[c[node]]) break;
+    			if(!visited2[c[node]]) {works = false; break;}
     		}
+    		v.clear();
     		while(visited[tmp]) ++tmp; //should automatically break when tmp>=N
     	}
+    	if(works) lo = mid;
+    	else hi = mid;
     }
-    cout << mid << "\n";
+    cout << lo << "\n";
 }
 
+/*
+Finally finished! Cool problem I'd say. In January when I took this contest
+I thought of binary searching the answer but didn't have enough graph
+knowledge to implement that. I encountered a few bugs, including misindexing
+(yet again...), printing mid instead of low (doesn't work because sometimes)
+the outer while loop exits and doesn't get a chance to update mid.
+*/
