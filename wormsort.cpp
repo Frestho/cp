@@ -84,6 +84,6 @@ int main() {
 Finally finished! Cool problem I'd say. In January when I took this contest
 I thought of binary searching the answer but didn't have enough graph
 knowledge to implement that. I encountered a few bugs, including misindexing
-(yet again...), printing mid instead of low (doesn't work because sometimes)
-the outer while loop exits and doesn't get a chance to update mid.
+(yet again...), printing mid instead of low (doesn't work because sometimes
+the outer while loop exits and doesn't get a chance to update mid).
 */
