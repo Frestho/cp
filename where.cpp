@@ -132,8 +132,8 @@ int main() {
 Really weird problem, mostly implementation. I did it over the course of
 an hour while having an officer meeting (because those are boring af, let's
 be real). Overall it actually went quite well. I found a few bugs and most
-were solved by inspection. The last bug I found was pretty interesting; it was
-on line 95. At first, I had only put m=69; break;, but that would put false
+were solved by inspection. The last bug I found on line 95 was pretty 
+interesting. At first, I had only put m=69; break;, but that would make false
 positives if totalA and totalB happened to have incremented enough already
 to satisfy the following if statement. Hence, I had to change it to what it is
 now.
