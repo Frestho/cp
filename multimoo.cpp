@@ -43,7 +43,7 @@ void dfs(int x, int y, int label) {
 }
 
 /*
-Uhh why is this marked hard? Can't you just do a simple floodfill for the first
+Do a simple floodfill for the first
 part and try pairing everything for the second? Since N is so low
 
 O(N^2) for the first part I think, O(N^4) for the second. 
@@ -51,6 +51,9 @@ O(N^2) for the first part I think, O(N^4) for the second.
 Wait nvm N^4 is way too big
 crap
 */
+
+//9/20/2020: ok wow might have solved this in my dreams
+//make another graph of the connected components themselves... wow
 
 int main() {
     setIO();
@@ -62,6 +65,7 @@ int main() {
     }
     bool idDone[1e6];
     vi id; // list of ID's 
+
 }
 
 
