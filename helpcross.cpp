@@ -58,3 +58,10 @@ int main() {
     }
     cout << ans << "\n";
 }
+
+/*
+pretty simple process events in order with greedy. reminded me of lifeguards.
+the only bug i encountered was when two events happened at the same time, I
+would want to process the cow before the chicken. Fixed by setting the default
+chicken ID to INT_MAX instead of -1. 
+*/
