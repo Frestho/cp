@@ -33,5 +33,5 @@ int main() {
     int N, K; cin >> N >> K;
     int s[N];
     trav(a, s) cin >> a;
-    
+    int dp
 }
