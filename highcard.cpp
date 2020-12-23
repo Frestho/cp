@@ -55,3 +55,16 @@ int main() {
 	}
     cout << bessiesWinningCards.size() << endl;*/
 }
+
+/*
+Lol I'm editing from the github website rn
+
+I first tried this problem in January. Completely failed it as my code was too complicated and weird
+and I didn't even have an algorithm in mind. I think what I tried to do was go through Bessie's cards
+and designate some of them "winning cards" where she will play it and get a point. Really dumb though,
+as the order of the cards doesn't even matter so idk what I was thinking.
+
+My old way of randomly doing whatever first came to mind resulted in tons of frustrations, leading me
+to quit USACO. Reassessment of my learning and coding style several months later led me to make more
+reasonable habits. usaco.guide helped a ton.
+*/
