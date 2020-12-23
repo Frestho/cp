@@ -101,4 +101,8 @@ Unfortunately, to find the last bug, I had to download the test data to
 realize it was probably because of large integer issues. I suppose by
 setting up a way to input my own custom test data, I can discover bugs like
 these without resorting to peeking at the data.
+
+12/22/2020 update regarding the above: Yup, at the time of writing this, I only 
+ran my code on the USACO website, not even using an online compiler. I now
+use an online compiler and debug with print statements. 
 */
