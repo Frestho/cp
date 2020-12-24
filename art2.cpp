@@ -98,8 +98,9 @@ efficient. A major bug I encountered that cause me to fail 7 test cases was
 forgetting that some colors may exist only in one place so the bounds vector
 contains two bounds with the same position. In that case, I want the "begin"
 type to be first. Not dealing with edge cases in my sorting compare functions
-seems to be a common bug for me.
+seems to be a common bug for me. 
 
 Also, printing s.top() while the stack is empty causes an error (segmentation
-fault).
+fault). That's why nothing was printing, so I had to switch to onlinegdb to
+find the bug.
 */
