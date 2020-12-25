@@ -42,50 +42,70 @@ struct DSU {
 };
 
 struct Edge {
-    int p, q, r;
+    int a, b, w; // node a, node b, weight
 };
-bool cmp(const Edge& x, const Edge& y) 
-{ return x.r > y.r; }
-bool sortbysec(const pair<int,pii> &a, 
-              const pair<int,pii> &b) 
-{ 
-    return (a.f > b.f); 
-} 
-int main() {
-    setIO("mootube");
-    int N, Q; cin >> N >> Q;
-    Edge edges[N-1];
-    trav(e, edges) {
-        int a, b, c; cin >> a >> b >> c;
-        e = {a-1, b-1, c};
-    }
-    sort(edges, edges + N - 1, cmp);
-    pair<int, pii> questions[Q];
-    rep(i, 0, Q) {
-        int a, b; cin >> a >> b;
-        questions[i] = mp(a, mp(b-1, i));
-    }
-    sort(questions, questions + Q, sortbysec);
-    int p = -1;
-    DSU dsu;
-    dsu.init(N);
 
-    int ans[Q];
-    trav(q, questions) {
-        while(p < N - 2 && edges[p+1].r >= q.f) {
-            p++;
-            dsu.unite(edges[p].p, edges[p].q);
+bool cmp(const Edge& x, const Edge& y) 
+{ return x.w < y.w; }
+
+int main() {
+    setIO("skilevel");
+    int M, N, T; cin >> M >> N >> T;
+    int grid[M][N];
+    rep(i, 0, M) {
+        rep(j, 0, N) {
+            cin >> grid[i][j];
         }
-        //if(pos[q] == 24) cout << "here" << dsu.size(q.s.f);
-        ans[q.s.s] =  dsu.size(q.s.f) - 1;
     }
-    trav(a, ans) cout << a << "\n";
+
+    vector<Edge> edges;
+    //makes edges
+    rep(i, 0, M) {
+        rep(j, 0, N) {
+            if(i < M-1) {
+                edges.pb({i*N + j, (i+1)*N + j, abs(grid[i][j] - grid[i+1][j])});
+            }
+            if(j < N-1) {
+                edges.pb({i*N + j, i*N + j + 1, abs(grid[i][j] - grid[i][j+1])});
+            }
+        }
+    }
+    sort(all(edges), cmp);
+    vi starts;
+    rep(i, 0, M) {
+        rep(j, 0, N) {
+            int a; cin >> a;
+            if(a) starts.pb(i*N + j);
+        }
+    }
+
+    DSU dsu;
+    dsu.init(N*M);
+
+    ll ans = 0;
+    trav(e, edges) {
+        if(dsu.sameSet(e.a, e.b)) continue;
+        bool temp = true;
+        if(dsu.size(e.a) >= T && dsu.size(e.b) >= T || (dsu.size(e.a) + dsu.size(e.b) < T)) temp = false;
+        dsu.unite(e.a, e.b);
+        if(temp) {
+            rep(i, 0, starts.size()) {
+                if(dsu.sameSet(e.a, starts[i])) {
+                    ans += e.w;
+
+                    //deletes element in O(1) by replacing it with the last element
+                    starts[i] = starts[starts.size()-1];
+                    starts.pop_back(); 
+                    i--; //don't accidentally skip the element we just moved
+                }
+            }
+        }
+    }
+    cout << ans << "\n";
 }
 
 /*
-Finding the idea was pretty easy. Implementation wasn't the most smooth. The
-one major bug I had was really stupid; I used "if" instead of "while". I also
-had another bug when I tried to use a map to map each question to its original
-position in the array. For some reason, this didn't work for some of the
-questions, so I had to attach a third integer to the question denoting ID.
+Damn, I think the vanila DSU I used can't be optimized enough to get full credit.
+This currently gets 7/10 test cases and I can't find any other easy optimizations
+besides rewriting the DSU struct, so maybe I'll redo this in the future?
 */
